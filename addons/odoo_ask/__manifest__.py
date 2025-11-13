@@ -1,15 +1,20 @@
 {
     'name': 'Ask Management',
-    'version': '1.3',  # 适配弹窗新建问货单
+    'version': '19.0.1.1', 
     'summary': 'Manage customer ask and procurement process.',
     'description': """
         This module implements the "Ask" functionality to support periodic material requirements collection from customers,
         aggregate them by material to form procurement references, and improve stocking accuracy.
     """,
-    'author': 'CodeBuddy',
-    'website': 'https://github.com/your-org/odoo-ask',
+    'author': 'Nio.l',
+    'website': 'https://github.com/nio1112/my-odoo-apps.git',
     'license': 'LGPL-3',
     'category': 'Sales/Inventory',
+    'price': 0.0,
+    'currency': 'USD',  
+    'images': [
+        'static/description/main_screenshot.png',
+    ],
     'depends': [
         'base',
         'stock',

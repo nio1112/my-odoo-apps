@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_ask_ask" model="ir.sequence">
+            <field name="name">Ask Order Sequence</field>
+            <field name="code">ask.ask</field>
+            <field name="prefix">ASK/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_ask_reservation" model="ir.sequence">
+            <field name="name">Ask Reservation Sequence</field>
+            <field name="code">ask.reservation</field>
+            <field name="prefix">RES/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

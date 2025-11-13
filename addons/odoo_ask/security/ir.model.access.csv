@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ask_ask_sales,ask.ask.sales,model_ask_ask,group_ask_sales,1,1,1,1
+access_ask_line_sales,ask.line.sales,model_ask_line,group_ask_sales,1,1,1,1
+access_ask_reservation_warehouse,ask.reservation.warehouse,model_ask_reservation,group_ask_warehouse,1,1,1,1
+access_ask_reservation_admin,ask.reservation.admin,model_ask_reservation,group_ask_admin,1,1,1,1
+access_ask_storage_fee_admin,ask.storage_fee.admin,model_ask_storage_fee,group_ask_admin,1,1,1,1
+access_ask_ask_admin,ask.ask.admin,model_ask_ask,group_ask_admin,1,1,1,1
+access_ask_line_admin,ask.line.admin,model_ask_line,group_ask_admin,1,1,1,1
+access_ask_ask_public,ask.ask.public,model_ask_ask,base.group_user,1,1,1,1
+access_ask_line_public,ask.line.public,model_ask_line,base.group_user,1,1,1,1
+access_ask_reservation_public,ask.reservation.public,model_ask_reservation,base.group_user,1,1,1,1
+access_ask_storage_fee_public,ask.storage_fee.public,model_ask_storage_fee,base.group_user,1,1,1,1
+access_ask_wizard_public,ask.wizard.public,model_ask_wizard,base.group_user,1,1,1,1
+access_ask_wizard_line_public,ask.wizard_line.public,model_ask_wizard_line,base.group_user,1,1,1,1

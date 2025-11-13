@@ -1,0 +1,66 @@
+# 通用系统与临时文件
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.swo
+
+# 环境与密钥文件
+.env
+.env.*
+!.env.example
+*.local
+*.local.*
+
+# Python / Odoo
+__pycache__/
+*.py[cod]
+*.pyo
+*.mo
+*.pot
+*.egg-info/
+*.egg
+build/
+dist/
+.mypy_cache/
+pytest_cache/
+.coverage
+htmlcov/
+coverage/
+.venv/
+venv/
+env/
+ENV/
+
+# Odoo 运行时数据
+odoo-data/filestore/
+odoo-data/sessions/
+odoo-data/*.db
+odoo-data/*.log
+
+# Node.js / TypeScript
+node_modules/
+**/node_modules/
+**/dist/
+**/logs/
+**/tmp/
+*.tsbuildinfo
+*.tgz
+npm-debug.log*
+yarn-error.log*
+
+# 平台输出
+**/.vercel
+**/.turbo
+**/.next
+
+# 编辑器与 IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Docker / 本地覆盖配置
+docker-compose.override.yml
+*.override.yml
+*.local.yml

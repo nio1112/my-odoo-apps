@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: odoo-db
+    environment:
+      POSTGRES_DB: odoo
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo -d odoo || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  odoo:
+    image: odoo:19.0
+    container_name: odoo-web
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./odoo-data:/var/lib/odoo
+    ports:
+      - "8069:8069"
+    environment:
+      TZ: "UTC"
+    command: >
+      odoo
+      --db_host=db --db_port=5432 --db_user=odoo --db_password=odoo
+      --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
+      --http-port=8069
+      --limit-time-real=120
+      --dev=reload
+
+volumes:
+  pgdata:

@@ -1,0 +1,13 @@
+/*
+    This CSS is to prevent the chatter from moving to the side on wide screens
+    for the ask.ask form view. It forces a vertical layout.
+*/
+.o_form_view[data-model="ask.ask"].o_form_sheet_chatter_aside .o_form_sheet_bg {
+    width: 100% !important;
+}
+
+.o_form_view[data-model="ask.ask"].o_form_sheet_chatter_aside .oe_chatter {
+    float: none !important;
+    width: 100% !important; 
+    margin-left: 0 !important;
+}

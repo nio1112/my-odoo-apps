@@ -1,4 +1,4 @@
-# Use the official Odoo 19.0 image as a base
+# Use the official Odoo 19.0 image as a base 
 FROM odoo:19.0
 
 # Set environment variables for non-interactive setup

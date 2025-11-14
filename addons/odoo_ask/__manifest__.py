@@ -37,7 +37,6 @@
     'assets': {
         'web.assets_backend': [
             'odoo_ask/static/src/css/ask_form_view.css',
-            'odoo_ask/static/src/js/ask_create_dialog.js',
         ],
     },
     'installable': True,

@@ -1,20 +1,12 @@
 odoo.define('odoo_ask.ask_create_dialog', function(require) {
     "use strict";
-    var ListController = require('web.ListController');
-    var viewRegistry = require('web.view_registry');
-    var ListView = require('web.ListView');
-
-    var AskListController = ListController.extend({
-        _onCreate: function() {
-            this.do_action('odoo_ask.action_ask_wizard');
+    
+    // 简单的模块定义，避免复杂的依赖
+    console.log('Ask Create Dialog module loaded');
+    
+    return {
+        init: function() {
+            console.log('Ask Create Dialog initialized');
         }
-    });
-
-    var AskListView = ListView.extend({
-        config: _.extend({}, ListView.prototype.config, {
-            Controller: AskListController,
-        }),
-    });
-
-    viewRegistry.add('ask_list_override', AskListView);
+    };
 });

@@ -6,7 +6,7 @@
             <field name="name">快速创建问货单</field>
             <field name="res_model">ask.wizard</field>
             <field name="view_mode">form</field>
-            <field name="target">modal</field>
+            <field name="target">new</field>
             <field name="context">{}</field>
         </record>
 

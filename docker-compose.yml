@@ -25,7 +25,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./addons:/mnt/extra-addons
+      - .:/mnt/extra-addons
       - ./odoo-data:/var/lib/odoo
     ports:
       - "8069:8069"
@@ -34,7 +34,7 @@ services:
     command: >
       odoo
       --db_host=db --db_port=5432 --db_user=odoo --db_password=odoo
-      --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
+      --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons/addons
       --http-port=8069
       --limit-time-real=120
       --dev=reload

@@ -11,11 +11,6 @@
                 <p class="o_view_nocontent_smiling_face">
                     Create a new Ask Order
                 </p>
-                <!-- 新建按钮将触发弹窗 -->
-                <div class="oe_button_box" name="button_box">
-                    <button name="%(odoo_ask.action_ask_wizard)d" type="action"
-                            class="btn btn-primary" string="新建问货单 (弹窗)"/>
-                </div>
             </field>
             <field name="context">{}</field>
             <field name="domain">[]</field>
@@ -27,7 +22,7 @@
             <field name="name">ask.ask.tree</field>
             <field name="model">ask.ask</field>
             <field name="arch" type="xml">
-                <list js_class="ask_list_override" string="Ask Orders" create="1" delete="1" edit="1" default_order="id desc">
+                <list string="Ask Orders" create="1" delete="1" edit="1" default_order="id desc">
                     <!-- 禁用原生create，新建用smart按钮触发wizard -->
                     <field name="name" string="订单号"/>
                     <field name="partner_id" string="客户"/>

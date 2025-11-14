@@ -6,9 +6,9 @@ ENV ODOO_RC=/etc/odoo/odoo.conf
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Copy the custom addons into the Odoo addons path
-COPY ./addons /mnt/extra-addons
+COPY ./addons /mnt/extra-addons/addons
 
 # Set permissions for the Odoo user
 USER root
-RUN chown -R odoo:odoo /mnt/extra-addons
+RUN chown -R odoo:odoo /mnt/extra-addons/addons
 USER odoo

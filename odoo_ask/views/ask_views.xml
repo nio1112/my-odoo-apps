@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Ask Action -->
+        <record id="action_ask_ask" model="ir.actions.act_window">
+            <field name="name">Ask Orders</field>
+            <field name="res_model">ask.ask</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Ask Order
+                </p>
+            </field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="limit">80</field>
+        </record>
+
+        <!-- Ask Tree View -->
+        <record id="view_ask_ask_tree" model="ir.ui.view">
+            <field name="name">ask.ask.tree</field>
+            <field name="model">ask.ask</field>
+            <field name="arch" type="xml">
+                <list string="Ask Orders" create="1" delete="1" edit="1" default_order="id desc">
+                    <!-- 禁用原生create，新建用smart按钮触发wizard -->
+                    <field name="name" string="订单号"/>
+                    <field name="partner_id" string="客户"/>
+                    <field name="date_target" string="目标交付日期"/>
+                    <field name="recurrence_days" string="重复周期"/>
+                    <field name="state" string="状态" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'submitted'" decoration-warning="state == 'locked'" decoration-muted="state == 'closed'"/>
+                    <field name="source_type" string="来源类型" optional="hide"/>
+                    <field name="created_by" string="创建人" optional="hide"/>
+                    <field name="create_date" string="创建日期" optional="hide"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Ask Line Tree View -->
+        <record id="view_ask_line_tree" model="ir.ui.view">
+            <field name="name">ask.line.tree</field>
+            <field name="model">ask.line</field>
+            <field name="arch" type="xml">
+                <list editable="bottom" create="1" delete="1">
+                    <field name="product_id" options="{'no_create': True, 'no_quick_create': True}" placeholder="选择产品..."/>
+                    <field name="ask_qty" string="问货数量"/>
+                    <field name="valid_ask_qty" string="有效数量" readonly="1"/>
+                    <field name="uom_id" string="单位" readonly="1"/>
+                    <field name="sales_suggested_qty" string="建议数量" readonly="1"/>
+                    <field name="client_confirmed_qty" string="客户确认数量"/>
+                    <field name="reserved_qty" string="已分货数量" readonly="1"/>
+                    <field name="werks" string="仓库"/>
+                    <field name="comments" string="备注"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Ask Form View -->
+        <record id="view_ask_ask_form" model="ir.ui.view">
+            <field name="name">ask.ask.form</field>
+            <field name="model">ask.ask</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submitted,locked,closed"/>
+                        <button name="action_submit" string="提交" type="object"  class="btn-primary" invisible="state != 'draft'"/>
+                        <button name="action_lock" string="锁定" type="object" class="btn-secondary" invisible="state != 'submitted'"/>
+                        <button name="action_close" string="关闭" type="object"  class="btn-secondary" invisible="state in ['closed']"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <div class="oe_button_box" name="button_box">
+                            <!-- 状态按钮区域 -->
+                        </div>
+                        <div class="oe_clear"></div>
+                        <group>
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="date_target"/>
+                                <field name="recurrence_days"/>
+                            </group>
+                            <group>
+                                <field name="source_type"/>
+                                <field name="created_by"/>
+                                <field name="vkgrp"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Ask Lines">
+                                <field name="line_ids" context="{'default_ask_id': id}">
+                                    <list editable="bottom" create="1" delete="1">
+                                        <field name="product_id" options="{'no_create': True, 'no_quick_create': True}" placeholder="选择产品..."/>
+                                        <field name="ask_qty" string="问货数量"/>
+                                        <field name="valid_ask_qty" string="有效数量" readonly="1"/>
+                                        <field name="uom_id" string="单位" readonly="1"/>
+                                        <field name="sales_suggested_qty" string="建议数量" readonly="1"/>
+                                        <field name="client_confirmed_qty" string="客户确认数量"/>
+                                        <field name="reserved_qty" string="已分货数量" readonly="1"/>
+                                        <field name="werks" string="仓库"/>
+                                        <field name="comments" string="备注"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                        <field name="note" placeholder="备注"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Ask Kanban View -->
+        <record id="view_ask_ask_kanban" model="ir.ui.view">
+            <field name="name">ask.ask.kanban</field>
+            <field name="model">ask.ask</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" create="1" class="o_kanban_small_column">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="date_target"/>
+                    <field name="state"/>
+                    <field name="id"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_card oe_kanban_global_click">
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <field name="name"/>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <div>
+                                            <field name="partner_id"/>
+                                        </div>
+                                        <div>
+                                            <span>目标交付日期: </span>
+                                            <field name="date_target"/>
+                                        </div>
+                                        <div>
+                                            <field name="state" widget="badge"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Menu -->
+        <!-- 主菜单：不设置action，点击后执行第一个子菜单的action（列表页面） -->
+        <menuitem id="menu_ask_root" name="Ask Management" sequence="10"/>
+        <!-- 子菜单：Ask Orders（列表页面，sequence最小，作为主菜单的默认action） -->
+        <menuitem id="menu_ask_ask" name="Ask Orders" parent="menu_ask_root" action="action_ask_ask" sequence="1"/>
+    </data>
+</odoo>

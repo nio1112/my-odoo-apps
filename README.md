@@ -220,18 +220,18 @@ python -m pytest addons/odoo_ask/tests/
 
 - **项目主页**: https://github.com/nio1112/my-odoo-apps
 - **问题反馈**: https://github.com/nio1112/my-odoo-apps/issues
-- **邮箱支持**: nio.l@example.com
+- **邮箱支持**: 453678080@qq.com
 - **技术文档**: [详细文档](addons/odoo_ask/README.md)
 
 ## 🎯 更新日志
 
-### v19.0.1.1 (2025-01-13)
+### v19.0.1.1 (2025-11-13)
 - ✨ 新增问货单创建向导
 - 🔧 优化出库验证逻辑
 - 📊 完善采购仪表盘功能
 - 🐛 修复定时任务执行问题
 
-### v19.0.1.0 (2025-01-01)
+### v19.0.1.0 (2025-11-01)
 - 🎉 初始版本发布
 - ✅ 实现核心问货管理功能
 - ✅ 完成库存预留系统

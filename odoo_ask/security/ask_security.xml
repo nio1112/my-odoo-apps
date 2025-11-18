@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="module_category_ask_management" model="ir.module.category">
+            <field name="name">Ask Management</field>
+            <field name="description">User access levels for Ask Management module</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="group_ask_sales" model="res.groups">
+            <field name="name">Sales</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_ask_procurement" model="res.groups">
+            <field name="name">Procurement</field>
+            <field name="implied_ids" eval="[(4, ref('group_ask_sales'))]"/>
+        </record>
+
+        <record id="group_ask_warehouse" model="res.groups">
+            <field name="name">Warehouse</field>
+            <field name="implied_ids" eval="[(4, ref('group_ask_sales'))]"/>
+        </record>
+
+        <record id="group_ask_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('group_ask_procurement')), (4, ref('group_ask_warehouse'))]"/>
+        </record>
+
+        <!-- Record Rules -->
+        <!-- 管理员和采购人员可以看到所有订单 -->
+        <record id="ask_ask_procurement_rule" model="ir.rule">
+            <field name="name">Ask Order: Procurement and Admin can see all asks</field>
+            <field name="model_id" ref="model_ask_ask"/>
+            <field name="groups" eval="[(4, ref('group_ask_procurement')), (4, ref('group_ask_admin')), (4, ref('base.group_system'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <!-- 销售人员可以看到自己创建的订单 -->
+        <!-- 注意：如果用户有sale_team_id，可以通过vkgrp字段过滤，但这里简化处理，只显示自己创建的 -->
+        <record id="ask_ask_sales_rule" model="ir.rule">
+            <field name="name">Ask Order: Salesperson can see their own asks</field>
+            <field name="model_id" ref="model_ask_ask"/>
+            <field name="groups" eval="[(4, ref('group_ask_sales'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[('created_by', '=', user.id)]</field>
+        </record>
+    </data>
+</odoo>
